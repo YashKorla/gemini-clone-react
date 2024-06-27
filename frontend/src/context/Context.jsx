@@ -1,6 +1,4 @@
 import { createContext, useState } from "react";
-import { config } from "dotenv";
-config();
 
 export const Context = createContext();
 const ContextProvider = (props) => {
@@ -38,7 +36,7 @@ const ContextProvider = (props) => {
 					"Content-Type": "application/json",
 				},
 			};
-			response = await fetch(process.env.BACKEND_URL, options);
+			response = await fetch(import.meta.env.BACKEND_URL, options);
 			setRecentPrompt(prompt);
 		} else {
 			const options = {
@@ -52,7 +50,7 @@ const ContextProvider = (props) => {
 			};
 			setPreviousPrompts((prev) => [...prev, input]);
 			setRecentPrompt(input);
-			response = await fetch(process.env.BACKEND_URL, options);
+			response = await fetch(import.meta.env.BACKEND_URL, options);
 		}
 
 		const data = await response.text();
