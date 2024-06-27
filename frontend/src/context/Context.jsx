@@ -24,6 +24,7 @@ const ContextProvider = (props) => {
 		setResultData("");
 		setLoading(true);
 		setShowResult(true);
+		console.log(import.meta.env.BACKEND_URL);
 
 		let response;
 		if (prompt !== undefined) {
