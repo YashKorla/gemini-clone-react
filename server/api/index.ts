@@ -11,11 +11,11 @@ config();
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEN_AI_KEY || "");
 
-app.post("/", (_, res) => {
+app.post("/", (_: any, res: any) => {
 	res.send("Express");
 });
 
-app.post("/gemini", async (req, res) => {
+app.post("/gemini", async (req: any, res: any) => {
 	console.log(req.body);
 
 	const model = genAI.getGenerativeModel({ model: "gemini-pro" });
