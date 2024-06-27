@@ -24,7 +24,6 @@ const ContextProvider = (props) => {
 		setResultData("");
 		setLoading(true);
 		setShowResult(true);
-		console.log(import.meta.env.BACKEND_URL);
 
 		let response;
 		if (prompt !== undefined) {
@@ -37,7 +36,7 @@ const ContextProvider = (props) => {
 					"Content-Type": "application/json",
 				},
 			};
-			response = await fetch(import.meta.env.BACKEND_URL, options);
+			response = await fetch("https://gemini-clone-react-backend.vercel.app/gemini", options);
 			setRecentPrompt(prompt);
 		} else {
 			const options = {
@@ -51,7 +50,7 @@ const ContextProvider = (props) => {
 			};
 			setPreviousPrompts((prev) => [...prev, input]);
 			setRecentPrompt(input);
-			response = await fetch(import.meta.env.BACKEND_URL, options);
+			response = await fetch("https://gemini-clone-react-backend.vercel.app/gemini", options);
 		}
 
 		const data = await response.text();
