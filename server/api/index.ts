@@ -1,14 +1,19 @@
-const express = require("express");
-const cors = require("cors");
-const GoogleGenerativeAI = require("@google/generative-ai").GoogleGenerativeAI;
-require("dotenv").config();
+import express from "express";
+import cors from "cors";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { config } from "dotenv";
 
 const PORT = 3000;
 const app = express();
 app.use(cors());
 app.use(express.json());
+config();
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEN_AI_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEN_AI_KEY || "");
+
+app.post("/", (_, res) => {
+	res.send("Express");
+});
 
 app.post("/gemini", async (req, res) => {
 	console.log(req.body);
