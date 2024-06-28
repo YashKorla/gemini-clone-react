@@ -11,7 +11,7 @@ config();
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEN_AI_KEY || "");
 
-app.post("/", (_: any, res: any) => {
+app.get("/", (_: any, res: any) => {
 	res.send("Express");
 });
 

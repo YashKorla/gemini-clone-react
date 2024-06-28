@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { assets } from "../../assets/assets";
 import "./Main.css";
 import { Context } from "../../context/Context";
+import Markdown from "react-markdown";
 
 const Main = () => {
 	const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context);
@@ -32,6 +33,8 @@ const Main = () => {
 			alt: "Code",
 		},
 	];
+
+	console.log(resultData);
 
 	return (
 		<>
@@ -87,19 +90,17 @@ const Main = () => {
 									src={assets.gemini_icon}
 									alt=""
 								/>
-								{loading ? (
-									<div className="loader">
-										<hr />
-										<hr />
-										<hr />
-									</div>
-								) : (
-									<p
-										dangerouslySetInnerHTML={{
-											__html: resultData,
-										}}
-									></p>
-								)}
+								<div className="result-data-text">
+									{loading ? (
+										<div className="loader">
+											<hr />
+											<hr />
+											<hr />
+										</div>
+									) : (
+										<Markdown>{resultData}</Markdown>
+									)}
+								</div>
 							</div>
 						</div>
 					)}

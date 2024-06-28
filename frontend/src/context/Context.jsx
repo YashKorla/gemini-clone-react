@@ -54,23 +54,8 @@ const ContextProvider = (props) => {
 		}
 
 		const data = await response.text();
-		let responseArray = data.split("**");
+		setResultData(data);
 
-		let formattedResponse = "";
-		for (let i = 0; i < responseArray.length; i++) {
-			if (i == 0 || i % 2 === 0) {
-				formattedResponse += responseArray[i];
-			} else {
-				formattedResponse += "<b>" + responseArray[i] + "</b>";
-			}
-		}
-
-		let formattedResponse2 = formattedResponse.split("*").join("</br>");
-		console.log(data);
-		let formattedResponseArray = formattedResponse2.split(" ");
-		formattedResponseArray.forEach((element, index) => {
-			delayPara(index, element + " ");
-		});
 		setLoading(false);
 		setInput("");
 	};
